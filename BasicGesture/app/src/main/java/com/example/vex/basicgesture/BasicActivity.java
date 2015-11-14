@@ -21,11 +21,11 @@ import java.util.Random;
 
 public class BasicActivity extends Activity {
 
-    private GestureDetectorCompat mDetector; //Gesture detector object.
+    private GestureDetectorCompat mDetector; // Gesture detector object
     private ImageView imgView;
-    private int status_bar_height;
+    private int status_bar_height; // To account for image location shift
     private Random rand;
-    private int screenWidth;
+    private int screenWidth;  // To keep Earl on the screen
     private int screenHeight;
 
     @Override
@@ -33,12 +33,13 @@ public class BasicActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener()); //Instance of it.
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener()); // Instance of it
 
         imgView =(ImageView)findViewById(R.id.earlImgView);
         status_bar_height = getStatusBarHeight();
         rand = new Random();
 
+        // Get device's screen size
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
         wm.getDefaultDisplay().getMetrics(displayMetrics);
@@ -85,13 +86,14 @@ public class BasicActivity extends Activity {
 
             Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
 
+            // If the user clicked with Earl's hitbox
             if(event.getX() > imgView.getX() && event.getX() < imgView.getX() + imgView.getWidth()){
                 if (event.getY() > imgView.getY() + status_bar_height && event.getY() < imgView.getY() + status_bar_height + imgView.getHeight()){
 
                     x = rand.nextInt((screenWidth - imgView.getWidth()) + 1);
                     y = rand.nextInt((screenHeight - imgView.getHeight() - status_bar_height) + 1);
 
-                    imgView.setX(x);
+                    imgView.setX(x); // Move Earl to new random loation on the screen
                     imgView.setY(y);
                 }
 
