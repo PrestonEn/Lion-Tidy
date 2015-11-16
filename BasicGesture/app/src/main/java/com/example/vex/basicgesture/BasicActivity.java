@@ -12,7 +12,10 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -87,18 +90,58 @@ public class BasicActivity extends Activity {
             Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
 
             // If the user clicked with Earl's hitbox
-            if(event.getX() > imgView.getX() && event.getX() < imgView.getX() + imgView.getWidth()){
-                if (event.getY() > imgView.getY() + status_bar_height && event.getY() < imgView.getY() + status_bar_height + imgView.getHeight()){
+            if(event.getRawX() > imgView.getX() && event.getRawX() < imgView.getX() + imgView.getWidth()){
+                if (event.getRawY() > imgView.getY() + status_bar_height && event.getRawY() < imgView.getY() + status_bar_height + imgView.getHeight()){
 
                     x = rand.nextInt((screenWidth - imgView.getWidth()) + 1);
                     y = rand.nextInt((screenHeight - imgView.getHeight() - status_bar_height) + 1);
 
-                    imgView.setX(x); // Move Earl to new random loation on the screen
+                    imgView.setX(x); // Move Earl to new random location on the screen
                     imgView.setY(y);
                 }
 
             }
 
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { // Swipe in a direction
+            Animation animate;
+            int hitbox_extend = 20; // Because "flinging" is finicky
+            float x;
+
+            Log.d(DEBUG_TAG, "onFling: " + e1.toString());
+            Log.d(DEBUG_TAG, "onFling: " + e2.toString());
+
+            // If the user clicked with Earl's hitbox
+            if(e1.getRawX() > imgView.getX() - hitbox_extend && e1.getRawX() < imgView.getX() + imgView.getWidth() + hitbox_extend){
+                if (e1.getRawY() > imgView.getY() - hitbox_extend + status_bar_height && e1.getRawY() < imgView.getY() + status_bar_height + imgView.getHeight() + hitbox_extend){
+
+                    if(e2.getRawX() > e1.getRawX()){ // If the user swiped in the positive x direction
+                        x = screenWidth - imgView.getX();
+                    } else { // If the user swiped lin the negative x direction
+                        x = -1*(imgView.getX() + imgView.getWidth());
+                    }
+                    animate = new TranslateAnimation(0, x, 0, ((e2.getRawY() - e1.getRawY())/(e2.getRawX() - e1.getRawX()))*x);
+                    animate.setDuration(1000);
+                    imgView.startAnimation(animate);
+                    imgView.setVisibility(View.INVISIBLE); // Hide original imageView
+                    imgView.postDelayed(new Runnable() { // After the animation
+                        @Override
+                        public void run() {
+                            int x, y;
+
+                            x = rand.nextInt((screenWidth - imgView.getWidth()) + 1);
+                            y = rand.nextInt((screenHeight - imgView.getHeight() - status_bar_height) + 1);
+
+                            imgView.setX(x); // Move Earl to new random location on the screen after the animation is finished
+                            imgView.setY(y);
+                            imgView.setVisibility(View.VISIBLE); // Make Earl visible in new location
+                        }
+                    }, 1050); // Start slightly after animation has finished to avoid weird momentary earls appearing
+                }
+            }
             return true;
         }
     }
