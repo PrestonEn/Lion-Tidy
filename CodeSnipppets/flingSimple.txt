@@ -1,3 +1,7 @@
+//The following function exists inside of a private class "MyGestureListener" which extends GestureDetector.SimpleOnGestureListener.
+//This allows us to choose which functions we wish to override.
+//We could also choose to implement the OnGestureListener interface, but as in Java, this forces us to implement all abstract methods.
+
 @Override
 public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { // Swipe in a direction
     Log.d(DEBUG_TAG, "onFling: " + e1.toString());
