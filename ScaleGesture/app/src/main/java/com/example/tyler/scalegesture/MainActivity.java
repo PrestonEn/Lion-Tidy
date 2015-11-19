@@ -11,10 +11,14 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private ScaleGestureDetector mySGD;
+    private ImageView imgView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        imgView =(ImageView)findViewById(R.id.earlImgView);
         mySGD = new ScaleGestureDetector(this, new ScaleListener());
     }
 
@@ -42,31 +47,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener{
-        @Override
         public boolean onScale(ScaleGestureDetector detector){
-            Log.e("SCALING-THINGS","Info here hopefully.");
+            double factor = detector.getScaleFactor();
+            Log.e("TylersScale", "Info: " + factor);
+            double w = imgView.getLayoutParams().width * factor;
+            double h = imgView.getLayoutParams().height * factor;
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int)w,(int)h);
+            imgView.setLayoutParams(lp);
             return true;
         }
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
