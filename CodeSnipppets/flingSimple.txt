@@ -13,7 +13,7 @@ public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float ve
 
     // Build the translation animation.
 
-    // Translation animation contains lambda function which moves earl to a new random place.
+    // Translation animation contains anonymous class which moves earl to a new random place.
 
     return true; // This must return true for the activity to consider it as handled.
 }
