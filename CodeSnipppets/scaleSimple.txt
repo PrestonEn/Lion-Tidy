@@ -1,0 +1,51 @@
+package com.example.tyler.scalegesture;
+
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ScaleGestureDetector mySGD; // Reference to the detector.
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Normal onCreate stuff...        
+
+        mySGD = new ScaleGestureDetector(this, new ScaleListener()); // Build instance of this detector.
+        // Inside of the constructor for the detector we place this activity and a new ScaleListener object.
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev){
+        mySGD.onTouchEvent(ev); //Make sure the detector can actually examine things.
+        return true;
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener{
+        public boolean onScale(ScaleGestureDetector detector){
+            double factor = detector.getScaleFactor(); // This is the scaling factor.
+            // Number is understood to be 1 +- some epsilon value.
+            // If we constantly multiply this factor value to some object, we can easily scale it.
+            Log.e("TylersScale", "Info: " + factor);
+            return true; // This must return true for the activity to consider it handled.
+        }
+    }
+
+    // Since we are extending the class, as in Java, there is no need to override every method.
+
+    // We could also override onScaleBegin(), and onScaleEnd()
+}
