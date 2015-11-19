@@ -1,0 +1,13 @@
+1. Build a custom emulator that has an SD card in the options. This settings is under the advanced options.
+
+2. Run the emulator inside Android Studio with or without debugging an app on it, and go to the gesture builder.
+
+3. From there, use the built in gesture builder to make your own custom gesture.
+
+4. When finished, close the emulator and go to the AVD manager. Right click the device you used and click "Show On Disk". This will take you to where the virtual SD card is located.
+
+5. Open the SD card ".img" file with 7zip or equivalent software and take the "gesture" file out of the structure and place somewhere temporary.
+
+6. Inside of the project that you wish to use a custom gesture with, add a sub-directory inside of "res" named "raw", and place the gesture file inside of it.
+
+7. From here, all the custom gesture abilities are handled inside the code.
