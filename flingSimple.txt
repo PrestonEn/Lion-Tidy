@@ -1,0 +1,15 @@
+@Override
+public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { // Swipe in a direction
+    Log.d(DEBUG_TAG, "onFling: " + e1.toString());
+    Log.d(DEBUG_TAG, "onFling: " + e2.toString());
+
+    // If the user clicked with Earl's hitbox
+
+    // Check which x direction to move Earl in - Either postive or negative along x-axis.
+
+    // Build the translation animation.
+
+    // Translation animation contains lambda function which moves earl to a new random place.
+
+    return true; // This must return true for the activity to consider it as handled.
+}
