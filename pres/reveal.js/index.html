@@ -32,68 +32,75 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Android Gesture API</h1>
-					<h3>Brock University Computer Science 3P97</h3>
+					<h2>Intro to Gestures in Android</h2>
+					<h2><p class="fragment current-visible">(with Earl)</p></h2>
+					<h3>COSC 3P97 - Brock University</h3>
 					<p>
-						<small>Tyler Kennedy Collins, Preston Engstrom, Stacey Van Herk</small>
+						<small>Tyler Kennedy Collins - Preston Engstrom - Stacey Van Herk</small>
 					</p>
 				</section>
 
 				<section>
 					<h2>Gesture API Information</h2>
-					<p>
-						Minimum stuff here, types of classes etc etc
-					</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Gesture Type</th>
+								<th>API Name</th>
+								<th>API Minimum Requirement</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Basic Gestures</td>
+								<td>android.view.GestureDetector</td>
+								<td>Level 1</td>
+							</tr>
+							<tr>
+								<td>Scaling Gestures</td>
+								<td>android.view.ScaleGestureDetector</td>
+								<td>Level 8</td>
+							</tr>
+							<tr>
+								<td>Custom Gestures</td>
+								<td>android.gestures</td>
+								<td>Level 4</td>
+							</tr>
+						</tbody>
+					</table>					
 				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
+					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+							<h2>Basic Video Example</h2>
+						</div>
 					</section>
+
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+						<h2>Initialization for a Basic Gesture</h2>
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
+Intializing gestures
+						</code></pre>
 					</section>
+
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
+						<h2>Detecting a Basic Gesture</h2>
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
+OnSingleTap
+OnDoubleTap
+OnFling
+Methods				</code></pre>
 					</section>
-				</section>
 
-				<section>
-					<h2>Example code - RESPACE TO LOOK NICE</h2>
-					<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
-//The following function exists inside of a private class "MyGestureListener" which extends GestureDetector.SimpleOnGestureListener.
-//This allows us to choose which functions we wish to override.
-//We could also choose to implement the OnGestureListener interface, but as in Java, this forces us to implement all abstract methods.
-
-@Override
-public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { // Swipe in a direction
-    Log.d(DEBUG_TAG, "onFling: " + e1.toString());
-    Log.d(DEBUG_TAG, "onFling: " + e2.toString());
-
-    // If the user clicked with Earl's hitbox
-
-    // Check which x direction to move Earl in - Either postive or negative along x-axis.
-
-    // Build the translation animation.
-
-    // Translation animation contains anonymous class which moves earl to a new random place.
-
-    return true; // This must return true for the activity to consider it as handled.
-}
-					</code></pre>
+					<section>
+						<h2>Other Simple Gesture Methods:</h2>
+						<ul>
+							<li>Thing</li>
+							<li>Other thing</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
@@ -140,22 +147,12 @@ public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float ve
 					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
 						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
 							<h2>Video Backgrounds</h2>
-							<pre><code class="hljs" styOle="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
+							<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
 						</div>
 					</section>
 					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
 						<h2>... and GIFs!</h2>
 					</section>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
 				</section>
 
 				<section>
