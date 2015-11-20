@@ -1,0 +1,26 @@
+Removing a fair amount of stuff from the default presentation so that it's usable.
+
+Stuff Removed:
+-Markdown stuff? Not sure what it is.
+-Transition styles example.
+-Theme changing example.
+-Slide by slide transitions.
+-Quote stuff.
+-Inter-slide linking.
+-Speaker view.
+-PDF exports. Can be put back in later to give Earl his copy of stuff.
+-Global States? Not sure what this is used for.
+-State events? Not a clue why this is a thing.
+-Last few linking slides to more stuff like auto scrolling slides.
+
+Note for Stacey: 
+-We can customize the transitions and themes fairly easily.
+-If you don't like them we can change them.
+-You can press ESC to go to the slide view.
+-Figured out how to turn spellcheck off easily. Yay :D.
+-Can use the table code to nicely organize the API info!
+-List things or bullet examples for the functions we can use.
+-Video/gif examples still exist.
+-Subsection stuff - basementing - still in and easy to use.
+-Earl mentioned that he wanted us to make sure there we slide numbers.
+-reveal.js is awesome and I was able to put it in right away easily.
