@@ -18,6 +18,8 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.media.SoundPool;
+import android.media.AudioManager;
 
 import java.util.Random;
 
@@ -30,7 +32,8 @@ public class BasicActivity extends Activity {
     private Random rand;
     private int screenWidth;  // To keep Earl on the screen
     private int screenHeight;
-
+    int soundIDs[];
+    SoundPool soundPool;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -41,6 +44,12 @@ public class BasicActivity extends Activity {
         imgView =(ImageView)findViewById(R.id.earlImgView);
         status_bar_height = getStatusBarHeight();
         rand = new Random();
+
+        soundIDs = new int[3];
+        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        soundIDs[0] = soundPool.load(this, R.raw.dealie, 1);
+        soundIDs[1] = soundPool.load(this, R.raw.face, 1);
+
 
         // Get device's screen size
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -96,6 +105,8 @@ public class BasicActivity extends Activity {
                     x = rand.nextInt((screenWidth - imgView.getWidth()) + 1);
                     y = rand.nextInt((screenHeight - imgView.getHeight() - status_bar_height) + 1);
 
+                    soundPool.play(soundIDs[0], 1, 1, 1, 0, 1);
+
                     imgView.setX(x); // Move Earl to new random location on the screen
                     imgView.setY(y);
                 }
@@ -123,6 +134,10 @@ public class BasicActivity extends Activity {
                     } else { // If the user swiped lin the negative x direction
                         x = -1*(imgView.getX() + imgView.getWidth());
                     }
+
+                    soundPool.play(soundIDs[1], 1, 1, 1, 0, 1);
+
+
                     animate = new TranslateAnimation(0, x, 0, ((e2.getRawY() - e1.getRawY())/(e2.getRawX() - e1.getRawX()))*x);
                     animate.setDuration(1000);
                     imgView.startAnimation(animate);
