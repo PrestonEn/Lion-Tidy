@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener{
         public boolean onScale(ScaleGestureDetector detector){
             double factor = detector.getScaleFactor();
-            Log.e("TylersScale", "Info: " + factor);
-            double w = (imgView.getLayoutParams().width * factor < 3 ? 3 : imgView.getLayoutParams().width * factor);
-            double h = (imgView.getLayoutParams().height * factor < 6 ? 6 : (imgView.getLayoutParams().height * factor > screenHeight ?  screenHeight : imgView.getLayoutParams().height * factor));
+            Log.e("TylersScale", "Info: " + factor);              //Adjust these per phone
+            double w = (imgView.getLayoutParams().width * factor < 20 ? 20 : imgView.getLayoutParams().width * factor);
+            double h = (imgView.getLayoutParams().height * factor < 25 ? 25 : (imgView.getLayoutParams().height * factor > screenHeight ?  screenHeight : imgView.getLayoutParams().height * factor));
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int)w,(int)h);
             lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
             lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);

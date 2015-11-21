@@ -6,7 +6,10 @@
     android:layout_height="match_parent" android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <include layout="@layout/content_main" />
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/content_main" />
 
 </android.support.design.widget.CoordinatorLayout>
-<!-- From: file:/C:/Users/Stacey/Documents/11_Fall%202015/COSC3P97/Final%20Project/Github/Lion-Tidy/ScaleGesture/app/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/E:/SchoolWork/3P97/Lion-Tidy/ScaleGesture/app/src/main/res/layout/activity_main.xml -->

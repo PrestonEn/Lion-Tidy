@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Stacey/Documents/11_Fall%202015/COSC3P97/Final%20Project/Github/Lion-Tidy/ScaleGesture/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values-v22/values-v22.xml -->
+    <!-- From: file:/E:/SchoolWork/3P97/Lion-Tidy/ScaleGesture/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values-v22/values-v22.xml -->
     <eat-comment/>
     <style name="Base.Theme.AppCompat" parent="Base.V22.Theme.AppCompat"/>
     <style name="Base.Theme.AppCompat.Light" parent="Base.V22.Theme.AppCompat.Light"/>
