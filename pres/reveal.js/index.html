@@ -31,7 +31,7 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
+				<section id="title">
 					<h2>Intro to Gestures in Android</h2>
 					<h2><p class="fragment current-visible">(with Earl)</p></h2>
 					<h3>COSC 3P97 - Brock University</h3>
@@ -40,7 +40,7 @@
 					</p>
 				</section>
 
-				<section>
+				<section id="info">
 					<h2>Gesture API Information</h2>
 					<table>
 						<thead>
@@ -70,9 +70,9 @@
 					</table>					
 				</section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+				<!-- START OF BASIC GESTURES -->
+				<section id="basic">
+					<section data-background-video="http://www.cosc.brocku.ca/~tk11br/wild.mp4" data-background-color="#000000">
 						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
 							<h2>Basic Video Example</h2>
 						</div>
@@ -80,125 +80,230 @@
 
 					<section>
 						<h2>Initialization for a Basic Gesture</h2>
-						<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
-Intializing gestures
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false style="overflow: hidden">
+import ...
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+
+public class BasicActivity extends Activity {
+
+    private GestureDetectorCompat mDetector;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        this.mDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    //Build MyGestureListener class...
+}
 						</code></pre>
 					</section>
 
 					<section>
 						<h2>Detecting a Basic Gesture</h2>
 						<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
-OnSingleTap
-OnDoubleTap
-OnFling
-Methods				</code></pre>
+//To be placed inside of BasicActivity class on the previous slide...
+
+class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent event) {
+        Log.d("Gestures", "onSingle: " + event.toString());
+        return true;
+    }
+    @Override
+    public boolean onDoubleTap(MotionEvent event) {
+        Log.d("Gestures", "onDoubleTap: " + event.toString());
+        return true;
+    }
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        Log.d("Gestures", "onFling: " + e1.toString());
+        Log.d("Gestures", "onFling: " + e2.toString());
+        return true;
+    }
+}
+					</code></pre>
 					</section>
 
-					<section>
-						<h2>Other Simple Gesture Methods:</h2>
-						<ul>
-							<li>Thing</li>
-							<li>Other thing</li>
+					<section style="text-align: left;">
+						<h2>Other Simple Gesture Methods</h2>
+						<ul style="margin-left: 100px;">
+							<span class="fragment">
+							<li>onContextClick</li>
+							<span class="fragment">
+							<li>onDoubleTap</li>
+							<span class="fragment">
+							<li>onDoubleTapEvent</li>
+							<span class="fragment">
+							<li>onDown</li>
+							<span class="fragment">
+							<li>onFling</li>
+							<span class="fragment">
+							<li>onLongPress</li>
+							<span class="fragment">
+							<li>onScroll</li>
+							<span class="fragment">
+							<li>onShowPress</li>
+							<span class="fragment">
+							<li>onSingleTapConfirmed</li>
+							<span class="fragment">
+							<li>onSingleTapUp</li>
 						</ul>
 					</section>
 				</section>
 
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
+				<!-- START OF SCALE -->
+				<section id="scale">
 					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
 						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
+							<h2>Scale Video Example</h2>
 						</div>
 					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
+
+					<section>
+						<h2>Initialization for Scale Gestures</h2>
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false style="overflow: hidden">
+import ...
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+
+public class ScaleActivity extends Activity {
+
+    private ScaleGestureDetector mySGD;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mySGD = new ScaleGestureDetector(this, new ScaleListener());
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent ev){
+        mySGD.onTouchEvent(ev);
+        return true;
+    }
+
+    //Build ScaleListener class...
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Detecting a Scaling Gesture</h2>
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
+private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener{
+
+    public boolean onScale(ScaleGestureDetector detector){
+        double factor = detector.getScaleFactor(); // This is the scaling factor.
+        Log.e("Scaling", "Info: " + factor);
+        return true;
+    }
+
+}
+					</code></pre>
+					</section>
+
+					<section style="text-align: left;">
+						<h2>Other Scale Gesture Methods</h2>
+						<ul style="margin-left: 100px;">
+							<span class="fragment">
+							<li>onScaleBegin</li>
+							<span class="fragment">
+							<li>onScaleEnd</li>
+						</ul>
 					</section>
 				</section>
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
+								<!-- START OF CUSTOM -->
+				<section id="custom">
+					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+							<h2>Custom Gesture Example</h2>
+						</div>
+					</section>
+
+					<section style="text-align: left;">
+						<h2>How to Build a Custom Gesture</h2>
+						<ol style="margin-left: 100px;font-size: 20px;">
+							<span class="fragment">
+							<li>Build a custom emulator that has an SD card in the options. This settings is under the advanced options.</li>
+							<span class="fragment">
+							<li>Run the emulator inside Android Studio with or without debugging an app on it, and go to the gesture builder.</li>
+							<span class="fragment">
+							<li>From there, use the built in gesture builder to make your own custom gesture.</li>
+							<span class="fragment">
+							<li>When finished, close the emulator and go to the AVD manager. Right click the device you used and click "Show On Disk". This will take you to where the virtual SD card is located.</li>
+							<span class="fragment">
+							<li>Open the SD card ".img" file with 7zip or equivalent software and take the "gesture" file out of the structure and place somewhere temporary.</li>
+							<span class="fragment">
+							<li>Inside of the project that you wish to use a custom gesture with, add a sub-directory inside of "res" named "raw", and place the gesture file inside of it.</li>
+							<span class="fragment">
+							<li>From here, all the custom gesture abilities are handled inside the code.</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Initialization for a Custom Gesture</h2> <!-- style="font-size: 15px;line-height: 17px;" -->
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false >
+import ...
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.gesture.Prediction;
+
+public class MainActivity extends Activity implements OnGesturePerformedListener {
+    private GestureLibrary gestureLib;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+        View inflate = getLayoutInflater().inflate(R.layout.activity_main, null);
+        gestureOverlayView.addView(inflate);
+        gestureOverlayView.addOnGesturePerformedListener(this);
+        gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+        if (!gestureLib.load()) finish();
+        setContentView(gestureOverlayView);
+    }
+}
+					</code></pre>
+					</section>
+
+					<section>
+						<h2>Detecting a Custom Gesture</h2>
+						<pre><code class="lang-java" data-trim contenteditable spellcheck=false>
+@Override
+public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+    ArrayList&lt;Prediction&gt; predictions = gestureLib.recognize(gesture);
+    for (Prediction prediction : predictions) {
+        if (prediction.score > 5.0) {
+            // Do stuff...
+        }
+    }
+}
+					</code></pre>
+					</section>
+
+
 				</section>
 
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
 
-				<section style="text-align: left;">
+				<section data-background="http://i.giphy.com/90F8aUepslB84.gif" style="text-align: left;">
 					<h1>THE END</h1>
 					<p>
 						- Yay us!
 					</p>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
 				</section>
 
 			</div>
