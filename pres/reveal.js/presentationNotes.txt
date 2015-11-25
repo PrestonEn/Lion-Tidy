@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------------------------------------
+Preston:
+
+Intro:
+
+API Info:
+
+Definitions:
+
+Slide 9:
+Private ScaleGestureDetector - reference to our detector object.
+mySGD = new ... - passing it this activity and passing it our custom scale listener.
+inside touch event - making sure we pass each touch event to our scale detector.
+
+Slide 10:
+Building our custom scale listener.
+Since we're extending we don't have to implement everything.
+As part of the onScale method we receive some ScaleGestureDetector event, which we can then examine to view the factor.
+This factor is the scaling factor, 1+-epsilon.
+--------------------------------------------------------------------------------------------------------------
+Tyler:
+
+Init:
+View - Just a superclass for GUI elements - lots of subclasses.
+GestureOverlayView - This is the transparent overlay that drew the checkmarks. Specifically for gestures.
+Inflate - Takes your raw boring old xml and will turn it into a fully functional view.
+Add the transparent one into this newly inflated one.
+Add a gesture listener to that view.
+
+GestureLibrary - Actual storage of custom gestures.
+GestureLibraries - Class which contains methods to work with gestures.
+
+Load gesture lib stuff.
+
+setContentView - Set the view of the activity to the view we built.
+
+Detection:
+Method is part of the main activity class. Is handled as a call back.
+Breaks down your gesture library into some list, and then tries to score them.
+If the score is over some threshold then youre gesture would return true or something.
+--------------------------------------------------------------------------------------------------------------
+Question Stuff:
+
+Multi Touch - You have to write your own implementation as some sort of touch events. From there you use MotionEvents built in action types - DOWN/UP/HELD - and its array of pointers on the screen to determine what is happening and as such recognize if it is a valid gesture or not.
+
+Rotate gesture stuff - See above.
+
+GestureDetector - Class which detects various gestures and events using MotionEvents. GestureDector.SimpleOnGestureListener and ones like it are callbacks which notify when a particular event happens.
+
